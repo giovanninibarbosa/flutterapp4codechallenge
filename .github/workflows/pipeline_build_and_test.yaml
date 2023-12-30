@@ -13,9 +13,8 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
+          flutter-version: 3.16.3
           channel: stable
-          version: 3.16.3
 
       - name: 📦 Install Dependencies
         run: |
