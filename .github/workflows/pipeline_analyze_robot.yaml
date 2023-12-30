@@ -27,5 +27,3 @@ jobs:
         if: ${{ !cancelled() }} # required to run this step even if flutter analyze fails
         with:
           analyze-log: flutter_analyze.log # file path for analyze log
-          custom-lint-log: custom_lint.log # file path for custom lint log (optional)
-          verbose: false # verbose output (optional)
