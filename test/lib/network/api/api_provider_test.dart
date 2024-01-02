@@ -10,23 +10,29 @@ class MockClient extends Mock implements http.Client {}
 void main() {
   late ApiProvider apiProvider;
   late MockClient mockClient;
+  late http.Response successfulResponse;
+  late http.Response errorResponse;
 
   setUp(() {
     mockClient = MockClient();
     apiProvider = ApiProvider()..client = mockClient;
+    successfulResponse = http.Response('{"word1": 1, "word2": 2}', 200);
+    errorResponse = http.Response('Not Found', 404);
   });
+
+  void setupMockResponse(http.Response response) {
+    when(mockClient.get(isA<Uri>() as Uri)).thenAnswer((_) async => response);
+  }
 
   group('getWordList', () {
     test('returns a WordList if the http call completes successfully',
         () async {
-      final response = http.Response('{"word1": 1, "word2": 2}', 200);
-      when(mockClient.get(typed(any))).thenAnswer((_) async => response);
+      setupMockResponse(successfulResponse);
       expect(await apiProvider.getWordList(), isA<WordList>());
     });
 
     test('throws an exception if the http call completes with an error', () {
-      final response = http.Response('Not Found', 404);
-      when(mockClient.get(typed(any))).thenAnswer((_) async => response);
+      setupMockResponse(errorResponse);
       expect(apiProvider.getWordList(), throwsException);
     });
   });
@@ -34,8 +40,7 @@ void main() {
   group('getWordDefinition', () {
     test('returns a WordDefinition if the http call completes successfully',
         () async {
-      final response = http.Response('{"word": "test", "results": []}', 200);
-      when(mockClient.get(typed(any))).thenAnswer((_) async => response);
+      setupMockResponse(successfulResponse);
       expect(
         await apiProvider.getWordDefinition('test'),
         isA<WordDefinition>(),
@@ -43,8 +48,7 @@ void main() {
     });
 
     test('throws an exception if the http call completes with an error', () {
-      when(mockClient.get(typed(any)))
-          .thenAnswer((_) async => http.Response('Not Found', 404));
+      setupMockResponse(errorResponse);
       expect(apiProvider.getWordDefinition('test'), throwsException);
     });
   });
