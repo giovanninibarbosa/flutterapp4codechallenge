@@ -19,14 +19,14 @@ void main() {
   group('getWordList', () {
     test('returns a WordList if the http call completes successfully',
         () async {
-      when(mockClient.get(any)).thenAnswer(
-          (_) async => http.Response('{"word1": 1, "word2": 2}', 200));
+      final response = http.Response('{"word1": 1, "word2": 2}', 200);
+      when(mockClient.get(any)).thenAnswer((_) async => response);
       expect(await apiProvider.getWordList(), isA<WordList>());
     });
 
     test('throws an exception if the http call completes with an error', () {
-      when(mockClient.get(any))
-          .thenAnswer((_) async => http.Response('Not Found', 404));
+      final response = http.Response('Not Found', 404);
+      when(mockClient.get(any)).thenAnswer((_) async => response);
       expect(apiProvider.getWordList(), throwsException);
     });
   });
@@ -34,8 +34,8 @@ void main() {
   group('getWordDefinition', () {
     test('returns a WordDefinition if the http call completes successfully',
         () async {
-      when(mockClient.get(any)).thenAnswer(
-          (_) async => http.Response('{"word": "test", "results": []}', 200));
+      final response = http.Response('{"word": "test", "results": []}', 200);
+      when(mockClient.get(any)).thenAnswer((_) async => response);
       expect(
           await apiProvider.getWordDefinition('test'), isA<WordDefinition>());
     });
