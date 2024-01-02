@@ -14,15 +14,15 @@ void main() {
             'typeOf': ['edible fruit'],
             'hasTypes': [],
             'derivation': [],
-            'examples': ['I ate an apple.']
-          }
+            'examples': ['I ate an apple.'],
+          },
         ],
         'syllables': {
           'count': 2,
-          'list': ['ap', 'ple']
+          'list': ['ap', 'ple'],
         },
         'pronunciation': {'all': 'ˈæpəl'},
-        'frequency': 0.5
+        'frequency': 0.5,
       };
 
       final wordDefinition = WordDefinition.fromJson(json);
@@ -53,7 +53,7 @@ void main() {
         'typeOf': ['edible fruit'],
         'hasTypes': [],
         'derivation': [],
-        'examples': ['I ate an apple.']
+        'examples': ['I ate an apple.'],
       };
 
       final result = Result.fromJson(json);
@@ -72,7 +72,7 @@ void main() {
     test('fromJson should return a valid Syllables object', () {
       final json = {
         'count': 2,
-        'list': ['ap', 'ple']
+        'list': ['ap', 'ple'],
       };
 
       final syllables = Syllables.fromJson(json);
