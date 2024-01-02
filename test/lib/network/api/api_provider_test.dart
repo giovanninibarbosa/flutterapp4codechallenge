@@ -37,7 +37,9 @@ void main() {
       final response = http.Response('{"word": "test", "results": []}', 200);
       when(mockClient.get(typed(any))).thenAnswer((_) async => response);
       expect(
-          await apiProvider.getWordDefinition('test'), isA<WordDefinition>());
+        await apiProvider.getWordDefinition('test'),
+        isA<WordDefinition>(),
+      );
     });
 
     test('throws an exception if the http call completes with an error', () {
