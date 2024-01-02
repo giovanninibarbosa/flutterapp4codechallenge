@@ -8,13 +8,12 @@ import 'package:mockito/mockito.dart';
 class MockClient extends Mock implements http.Client {}
 
 void main() {
-  ApiProvider apiProvider;
+  late ApiProvider apiProvider;
   late MockClient mockClient;
 
   setUp(() {
     mockClient = MockClient();
-    apiProvider = ApiProvider();
-    apiProvider.client = mockClient;
+    apiProvider = ApiProvider()..client = mockClient;
   });
 
   group('getWordList', () {
