@@ -5,12 +5,13 @@ class WordDefinition {
   Pronunciation pronunciation;
   double frequency;
 
-  WordDefinition(
-      {required this.word,
-      required this.results,
-      required this.syllables,
-      required this.pronunciation,
-      required this.frequency});
+  WordDefinition({
+    required this.word,
+    required this.results,
+    required this.syllables,
+    required this.pronunciation,
+    required this.frequency,
+  });
 
   factory WordDefinition.fromJson(Map<String, dynamic> json) {
     return WordDefinition(
@@ -35,24 +36,25 @@ class Result {
   List<String> derivation;
   List<String> examples;
 
-  Result(
-      {required this.definition,
-      required this.partOfSpeech,
-      required this.synonyms,
-      required this.typeOf,
-      required this.hasTypes,
-      required this.derivation,
-      required this.examples});
+  Result({
+    required this.definition,
+    required this.partOfSpeech,
+    required this.synonyms,
+    required this.typeOf,
+    required this.hasTypes,
+    required this.derivation,
+    required this.examples,
+  });
 
   factory Result.fromJson(Map<String, dynamic> json) {
     return Result(
       definition: json['definition'] as String,
       partOfSpeech: json['partOfSpeech'] as String,
-      synonyms: List<String>.from(json['synonyms'] as Iterable<dynamic>),
-      typeOf: List<String>.from(json['typeOf'] as Iterable<dynamic>),
-      hasTypes: List<String>.from(json['hasTypes'] as Iterable<dynamic>),
-      derivation: List<String>.from(json['derivation'] as Iterable<dynamic>),
-      examples: List<String>.from(json['examples'] as Iterable<dynamic>),
+      synonyms: (json['synonyms'] as List).cast<String>(),
+      typeOf: (json['typeOf'] as List).cast<String>(),
+      hasTypes: (json['hasTypes'] as List).cast<String>(),
+      derivation: (json['derivation'] as List).cast<String>(),
+      examples: (json['examples'] as List).cast<String>(),
     );
   }
 }
