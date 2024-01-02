@@ -4,24 +4,24 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('WordDefinition', () {
     test('fromJson should return a valid WordDefinition object', () {
-      final json = {
+      final json = <String, dynamic>{
         'word': 'apple',
-        'results': [
+        'results': <Map<String, dynamic>>[
           {
             'definition': 'A fruit',
             'partOfSpeech': 'noun',
-            'synonyms': ['fruit'],
-            'typeOf': ['edible fruit'],
-            'hasTypes': [],
-            'derivation': [],
-            'examples': ['I ate an apple.'],
+            'synonyms': <String>['fruit'],
+            'typeOf': <String>['edible fruit'],
+            'hasTypes': <String>[],
+            'derivation': <String>[],
+            'examples': <String>['I ate an apple.'],
           },
         ],
-        'syllables': {
+        'syllables': <String, dynamic>{
           'count': 2,
-          'list': ['ap', 'ple'],
+          'list': <String>['ap', 'ple'],
         },
-        'pronunciation': {'all': 'ˈæpəl'},
+        'pronunciation': <String, dynamic>{'all': 'ˈæpəl'},
         'frequency': 0.5,
       };
 
@@ -46,14 +46,14 @@ void main() {
 
   group('Result', () {
     test('fromJson should return a valid Result object', () {
-      final json = {
+      final json = <String, dynamic>{
         'definition': 'A fruit',
         'partOfSpeech': 'noun',
-        'synonyms': ['fruit'],
-        'typeOf': ['edible fruit'],
-        'hasTypes': [],
-        'derivation': [],
-        'examples': ['I ate an apple.'],
+        'synonyms': <String>['fruit'],
+        'typeOf': <String>['edible fruit'],
+        'hasTypes': <String>[],
+        'derivation': <String>[],
+        'examples': <String>['I ate an apple.'],
       };
 
       final result = Result.fromJson(json);
@@ -70,9 +70,9 @@ void main() {
 
   group('Syllables', () {
     test('fromJson should return a valid Syllables object', () {
-      final json = {
+      final json = <String, dynamic>{
         'count': 2,
-        'list': ['ap', 'ple'],
+        'list': <String>['ap', 'ple'],
       };
 
       final syllables = Syllables.fromJson(json);
@@ -84,7 +84,7 @@ void main() {
 
   group('Pronunciation', () {
     test('fromJson should return a valid Pronunciation object', () {
-      final json = {'all': 'ˈæpəl'};
+      final json = <String, dynamic>{'all': 'ˈæpəl'};
 
       final pronunciation = Pronunciation.fromJson(json);
 
